@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -38,7 +39,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-
+player = Player('George', room['outside'])
 # Write a loop that:
 #
 # * Prints the current room name
@@ -49,3 +50,35 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+# REPL (Read, evaluate, print, loop)
+selection = ''
+# LOOP
+while selection != 'q':
+    print(f'Current room and description: \n{player.current_room}')
+    # Valid movement
+    directions = {
+        'n': 'n_to',
+        's': 's_to',
+        'e': 'e_to',
+        'w': 'w_to'
+    }
+    # Available paths based on current room
+    available_paths = {k: v for (k, v) in directions.items(
+    ) if getattr(player.current_room, v) != None}
+    print(f'Your available paths are:')
+    for k, v in available_paths.items():
+        print(f'"{k}"')
+    # READ
+    selection = input("Choose a direction or 'q' to quit the game :\n").lower()
+    # EVALUATE
+    if selection == 'q':
+        print('Thank you for playing')
+    elif selection not in available_paths:
+        print('Error, please enter valid direction:\n')
+    else:
+        player.current_room = getattr(
+            player.current_room, available_paths[selection])
+
+
+
