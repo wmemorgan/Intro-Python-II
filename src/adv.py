@@ -60,7 +60,7 @@ player = Player('Harry', room['outside'], Inventory('Player Inventory', [Item(
 
 # REPL (Read, evaluate, print, loop)
 selection = ''
-padding = 4
+padding = len("located in, carries the following items:") + 4
 top_border = f"{'=' * (int(len(player.name+player.current_room.name)+padding))}"
 print(top_border)
 print(player)
@@ -87,7 +87,7 @@ while selection != 'q':
         "\nChoose a direction or 'q' to quit the game : ").lower().strip()
     # EVALUATE
     if selection == 'q':
-        print('Thank you for playing')
+        print('Thank you for playing!')
     elif selection not in available_paths:
         print('Error, please enter valid direction:\n')
     else:

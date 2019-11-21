@@ -1,5 +1,6 @@
 class Item:
     """Item information"""
+
     def __init__(self, name, description):
         self.name = name
         self.description = description
@@ -16,6 +17,7 @@ class Food(Item):
 
 class Gold(Item):
     """CRUD functionality for gold item"""
+
     def __init__(self, quantity=0):
         super().__init__('Gold', 'Use it to buy items')
         self.quantity = quantity
@@ -26,7 +28,8 @@ class Gold(Item):
     def increase(self, quantity):
         if quantity > 0:
             self.quantity += quantity
-            print(f'Added {quantity} gold coin(s). You have {self.quantity} coin(s).')
+            print(
+                f'Added {quantity} gold coin(s). You have {self.quantity} coin(s).')
         else:
             print('Invalid value')
 
@@ -68,8 +71,8 @@ class Inventory:
 
     def add_item(self, item):
         self.items.append(item)
-        print(f'Picked up {item}')
+        print(f'Added {item}\n')
 
     def remove_item(self, item):
         self.items.remove(item)
-        print(f'Dropped {item}')
+        print(f'Dropped {item}\n')
