@@ -15,7 +15,7 @@ class Player:
         output = f'{self.name}, located in {self.current_room.name},'
 
         if len(self.inventory.items) > 0:
-            output += f" carrying:"
+            output += f" carries the following items:\n"
             output += self.inventory.display_inventory()
 
         return output
