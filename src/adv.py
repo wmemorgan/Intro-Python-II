@@ -1,3 +1,4 @@
+import re
 from room import Room
 from player import Player
 from inventory import Inventory
@@ -12,7 +13,7 @@ room = {
                      "North of you, the cave mount beckons"),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+passages run north and east.""", Inventory('Room Inventory', [Item('cloak', 'wool cloak')])),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
@@ -83,6 +84,7 @@ player.current_room.show_available_directions()
 while selection != 'q':
     # READ
     selection = input("Choose a selection or press 'm' for the main menu: ").lower().strip()
+    print(f"ROOM ITEMS: {[str(item) for item in player.current_room.inventory.items]}")
     # EVALUATE
     if selection == 'q':
         print('Thank you for playing!')
@@ -106,6 +108,19 @@ while selection != 'q':
                 if (len(player.inventory.items) > 0):
                     print("You are carrying the following items:")
                 print(player.inventory.show_inventory())
+
+                item_selection = ''
+
+                while item_selection != 'b':
+                    item_selection = input("GET or DROP an item or press 'b' to return to the previous menu: ").lower().strip()
+                    item_selection = re.sub(" +", " ", item_selection)
+                    if item_selection == 'b':
+                        print('Return to previous menu')
+                    elif item_selection[:3] == 'get':
+                        player.get_item(item_selection[3:].strip())
+                    elif item_selection[:4] == 'drop':
+                        player.drop_item(item_selection[4:].strip())
+                
             elif inv_selection == 'r':
                 if (len(player.current_room.inventory.items) > 0):
                     print(f"{player.current_room.name} contains:")

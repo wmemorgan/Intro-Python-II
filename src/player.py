@@ -26,9 +26,23 @@ class Player:
         print(f"You have entered the {self.current_room}")
 
     def get_item(self, item):
-        self.inventory.add_item(item)
-        self.current_room.inventory.remove_item(item)
+        try:
+            found_item = self.current_room.inventory.remove_item(item)
+            if found_item is None:
+                raise Exception
+            else:
+                self.inventory.add_item(found_item)
+                print(f"You picked up {item}")
+        except:
+            print(f"ERROR: {item} unavailable")
 
     def drop_item(self, item):
-        self.inventory.remove_item(item)
-        self.current_room.inventory.add_item(item)
+        try:
+            dropped_item = self.inventory.remove_item(item)
+            if dropped_item is None:
+                raise Exception
+            else:
+                self.current_room.inventory.add_item(dropped_item)
+                print(f"You dropped {item} in the {self.current_room.name}")
+        except:
+            print(f"ERROR: You don't have {item}")

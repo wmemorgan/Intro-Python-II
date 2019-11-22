@@ -2,7 +2,7 @@ class Item:
     """Item information"""
 
     def __init__(self, name, description):
-        self.name = name
+        self.name = name.lower()
         self.description = description
 
     def __str__(self):

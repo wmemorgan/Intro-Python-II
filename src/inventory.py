@@ -1,3 +1,6 @@
+from item import Item
+from item import Gold
+
 class Inventory:
     """Inventory management"""
     menu = {
@@ -12,7 +15,7 @@ class Inventory:
         self.items = items
 
     def __str__(self):
-        return f"{self.name} number of items: {len(self.items)}"
+        return f"{self.name} number of items: {len(self.items)} {self.items}"
 
     def show_inventory(self):
         if len(self.items) > 0:
@@ -31,8 +34,8 @@ class Inventory:
 
     def add_item(self, item):
         self.items.append(item)
-        print(f'Added {item}\n')
 
-    def remove_item(self, item):
-        self.items.remove(item)
-        print(f'Dropped {item}\n')
+    def remove_item(self, item_name):
+        old_item = [item for item in self.items if item.name == item_name][0]
+        self.items = [item for item in self.items if item.name != item_name]
+        return old_item
