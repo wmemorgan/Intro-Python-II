@@ -1,5 +1,10 @@
 class Inventory:
     """Inventory management"""
+    menu = {
+        'i': 'Player inventory',
+        'r': 'Room inventory',
+        'm': 'Go back to main menu',
+    }
 
     def __init__(self, name, items=[]):
         self.name = name

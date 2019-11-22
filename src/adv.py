@@ -59,14 +59,14 @@ player = Player('Harry', room['outside'], Inventory('Player Inventory', [Item(
 # If the user enters "q", quit the game.
 
 # REPL (Read, evaluate, print, loop)
-menu = {
+main_menu = {
     'm': 'Menu',
-    'i': 'Player inventory',
+    'i': 'Inventory Menu',
     'p': 'Available path(s) ',
     'q': 'Quit the game',
 }
 
-def display_main_menu(menu):
+def display_menu(menu):
     for k, v in menu.items():
         print(f"{k.upper()}: {v}")
     print("\n")
@@ -77,22 +77,38 @@ top_border = f"{'=' * (int(len(player.name+player.current_room.name)+padding))}"
 print(top_border)
 print(player)
 print(f'{player.current_room.description}\n')
-display_main_menu(menu)
+display_menu(main_menu)
 player.current_room.display_available_paths()
 # LOOP
 while selection != 'q':
     # READ
-    selection = input("\nChoose a selection or press 'm' for the main menu: ").lower().strip()
+    selection = input("Choose a selection or press 'm' for the main menu: ").lower().strip()
     # EVALUATE
     if selection == 'q':
         print('Thank you for playing!')
     elif selection == 'm':
-        display_main_menu(menu)
+        display_menu(main_menu)
     elif selection == 'p':
         player.current_room.display_available_paths()
     elif selection == 'i':
-        print("You are carrying the following items:")
-        print(player.inventory.display_inventory())
+        display_menu(player.inventory.menu)
+        inv_selection = ''
+
+        while inv_selection != 'm':
+            inv_selection = input(
+                "Choose from the inventory menu or press 'm' to return to the main menu: ").lower().strip()
+
+            if inv_selection == 'm':
+                display_menu(main_menu)
+            elif inv_selection == 'i':
+                if (len(player.inventory.items) > 0):
+                    print("You are carrying the following items:")
+                print(player.inventory.display_inventory())
+            elif inv_selection == 'r':
+                if (len(player.current_room.inventory.items) > 0):
+                    print(f"{player.current_room.name} contains:")
+                print(player.current_room.inventory.display_inventory())
+
     elif selection not in player.current_room.get_available_paths():
         print('Error, please enter valid direction:\n')
     else:
