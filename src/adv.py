@@ -62,7 +62,7 @@ player = Player('Harry', room['outside'], Inventory('Player Inventory', [Item(
 main_menu = {
     'm': 'Menu',
     'i': 'Inventory Menu',
-    'p': 'Available path(s) ',
+    'd': 'Available direction(s) ',
     'q': 'Quit the game',
 }
 
@@ -78,7 +78,7 @@ print(top_border)
 print(player)
 print(f'{player.current_room.description}\n')
 display_menu(main_menu)
-player.current_room.display_available_paths()
+player.current_room.show_available_directions()
 # LOOP
 while selection != 'q':
     # READ
@@ -88,8 +88,8 @@ while selection != 'q':
         print('Thank you for playing!')
     elif selection == 'm':
         display_menu(main_menu)
-    elif selection == 'p':
-        player.current_room.display_available_paths()
+    elif selection == 'd':
+        player.current_room.show_available_directions()
     elif selection == 'i':
         display_menu(player.inventory.menu)
         inv_selection = ''
@@ -101,19 +101,21 @@ while selection != 'q':
             if inv_selection == 'm':
                 display_menu(main_menu)
             elif inv_selection == 'i':
+                display_menu(player.inventory.menu)
+            elif inv_selection == 'p':
                 if (len(player.inventory.items) > 0):
                     print("You are carrying the following items:")
-                print(player.inventory.display_inventory())
+                print(player.inventory.show_inventory())
             elif inv_selection == 'r':
                 if (len(player.current_room.inventory.items) > 0):
                     print(f"{player.current_room.name} contains:")
-                print(player.current_room.inventory.display_inventory())
+                print(player.current_room.inventory.show_inventory())
 
-    elif selection not in player.current_room.get_available_paths():
+    elif selection not in player.current_room.get_available_directions():
         print('Error, please enter valid direction:\n')
     else:
         player.change_room(selection)
-        player.current_room.display_available_paths()
+        player.current_room.show_available_directions()
 
 bottom_border = f"\n{'=' * (int(len(player.current_room.description)))}\n"
 print(bottom_border)

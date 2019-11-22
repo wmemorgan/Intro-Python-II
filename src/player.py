@@ -17,7 +17,7 @@ class Player:
 
         if len(self.inventory.items) > 0:
             output += f" carries the following items:\n"
-            output += self.inventory.display_inventory()
+            output += self.inventory.show_inventory()
 
         return output
 

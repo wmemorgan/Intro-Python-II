@@ -1,7 +1,8 @@
 class Inventory:
     """Inventory management"""
     menu = {
-        'i': 'Player inventory',
+        'i': 'Inventory Menu',
+        'p': 'Player inventory',
         'r': 'Room inventory',
         'm': 'Go back to main menu',
     }
@@ -13,7 +14,7 @@ class Inventory:
     def __str__(self):
         return f"{self.name} number of items: {len(self.items)}"
 
-    def display_inventory(self):
+    def show_inventory(self):
         if len(self.items) > 0:
             size = max(len(str(word)) for word in self.items)
             padding = 4

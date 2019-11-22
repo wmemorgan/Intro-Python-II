@@ -28,20 +28,20 @@ class Room:
 
         if len(self.inventory.items) > 0:
             output += f" which contains: \n"
-            output += self.inventory.display_inventory()
+            output += self.inventory.show_inventory()
         else:
             output += f"\n"
 
         return output
 
-    def get_available_paths(self):
+    def get_available_directions(self):
         # Available paths based on selected room
         available_paths = {k: v for (k, v) in self.directions.items(
         ) if getattr(self, v) != None}
 
         return available_paths
 
-    def display_available_paths(self):
+    def show_available_directions(self):
         print(f'Your available paths are:')
-        for k, v in self.get_available_paths().items():
+        for k, v in self.get_available_directions().items():
             print(f'{k.upper()}: {getattr(self, v).name}')
