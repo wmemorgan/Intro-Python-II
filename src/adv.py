@@ -67,20 +67,7 @@ print(player)
 # LOOP
 while selection != 'q':
     print(f'{player.current_room.description}\n')
-    # Valid movement
-    directions = {
-        'n': 'n_to',
-        's': 's_to',
-        'e': 'e_to',
-        'w': 'w_to'
-    }
-    # Available paths based on current room
-    available_paths = {k: v for (k, v) in directions.items(
-    ) if getattr(player.current_room, v) != None}
-
-    print(f'Your available paths are:')
-    for k, v in available_paths.items():
-        print(f'{k.upper()}: {getattr(player.current_room, v).name}')
+    player.current_room.display_available_paths()
 
     # READ
     selection = input(
@@ -90,12 +77,12 @@ while selection != 'q':
         print('Thank you for playing!')
     elif selection == 'i':
         print(player.inventory.display_inventory())
-    elif selection not in available_paths:
+    elif selection not in player.current_room.get_available_paths():
         print('Error, please enter valid direction:\n')
     else:
-        player.change_room(available_paths[selection])
-        player.current_room.inventory.add_item(
-            Item("Bread cumbs", "a marker to trace our steps"))
+        player.change_room(selection)
+        # player.current_room.inventory.add_item(
+        #     Item("Bread cumbs", "a marker to trace our steps"))
 
 bottom_border = f"\n{'=' * (int(len(player.current_room.description)))}\n"
 print(bottom_border)
