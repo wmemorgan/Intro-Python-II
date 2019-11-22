@@ -6,6 +6,14 @@ from item import Inventory
 class Room:
     """Room information and available paths"""
 
+    # Movement map
+    directions = {
+        'n': 'n_to',
+        's': 's_to',
+        'e': 'e_to',
+        'w': 'w_to'
+    }
+
     def __init__(self, name, description, inventory=Inventory('Room Inventory')):
         self.name = name
         self.description = description
@@ -25,3 +33,15 @@ class Room:
             output += f"\n"
 
         return output
+
+    def get_available_paths(self):
+        # Available paths based on selected room
+        available_paths = {k: v for (k, v) in self.directions.items(
+        ) if getattr(self, v) != None}
+
+        return available_paths
+
+    def display_available_paths(self):
+        print(f'Your available paths are:')
+        for k, v in self.get_available_paths().items():
+            print(f'{k.upper()}: {getattr(self, v).name}')

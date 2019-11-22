@@ -9,6 +9,7 @@ class Player:
     def __init__(self, name, current_room, inventory=Inventory('Player Inventory')):
         self.name = name
         self.current_room = current_room
+        self.directions = self.current_room.directions # Reference Room class attributes
         self.inventory = inventory
 
     def __str__(self):
@@ -20,6 +21,6 @@ class Player:
 
         return output
 
-    def change_room(self, room):
-        self.current_room = getattr(self.current_room, room)
-        print(f"You have entered the {self.current_room}\n")
+    def change_room(self, direction):
+        self.current_room = getattr(self.current_room, self.directions[direction])
+        print(f"You have entered the {self.current_room}")
