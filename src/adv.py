@@ -88,6 +88,8 @@ while selection != 'q':
     # EVALUATE
     if selection == 'q':
         print('Thank you for playing!')
+    elif selection == 'i':
+        print(player.inventory.display_inventory())
     elif selection not in available_paths:
         print('Error, please enter valid direction:\n')
     else:
