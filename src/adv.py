@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-from item import Inventory
+from inventory import Inventory
 from item import Item
 from item import Gold
 from item import Food
@@ -66,7 +66,7 @@ menu = {
     'q': 'Quit the game',
 }
 
-def display_menu(menu):
+def display_main_menu(menu):
     for k, v in menu.items():
         print(f"{k.upper()}: {v}")
     print("\n")
@@ -77,7 +77,7 @@ top_border = f"{'=' * (int(len(player.name+player.current_room.name)+padding))}"
 print(top_border)
 print(player)
 print(f'{player.current_room.description}\n')
-display_menu(menu)
+display_main_menu(menu)
 player.current_room.display_available_paths()
 # LOOP
 while selection != 'q':
@@ -87,7 +87,7 @@ while selection != 'q':
     if selection == 'q':
         print('Thank you for playing!')
     elif selection == 'm':
-        display_menu(menu)
+        display_main_menu(menu)
     elif selection == 'p':
         player.current_room.display_available_paths()
     elif selection == 'i':
@@ -98,8 +98,6 @@ while selection != 'q':
     else:
         player.change_room(selection)
         player.current_room.display_available_paths()
-        # player.current_room.inventory.add_item(
-        #     Item("Bread cumbs", "a marker to trace our steps"))
 
 bottom_border = f"\n{'=' * (int(len(player.current_room.description)))}\n"
 print(bottom_border)

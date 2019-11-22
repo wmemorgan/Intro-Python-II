@@ -1,6 +1,6 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
-from item import Inventory
+from inventory import Inventory
 
 
 class Player:
@@ -24,3 +24,11 @@ class Player:
     def change_room(self, direction):
         self.current_room = getattr(self.current_room, self.directions[direction])
         print(f"You have entered the {self.current_room}")
+
+    def get_item(self, item):
+        self.inventory.add_item(item)
+        self.current_room.inventory.remove_item(item)
+
+    def drop_item(self, item):
+        self.inventory.remove_item(item)
+        self.current_room.inventory.add_item(item)
