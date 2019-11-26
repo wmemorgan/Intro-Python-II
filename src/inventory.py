@@ -24,7 +24,7 @@ class Inventory:
                     '* {a:<{b}} *\n'.format(a=str(word), b=size)
             output += ' ' * (indent) + '*' * (size + padding) + Color.END + '\n' 
         else:
-            output = f'no items available'
+            output = f"\n  {Color.RED}**NO ITEMS AVAILABLE**{Color.END}  \n"
 
         return output
 

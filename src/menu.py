@@ -9,9 +9,12 @@ class Menu:
         self.instructions = instructions
 
     def show_menu(self):
+        size = max(len(k) + len(v) for k, v in self.options.items())
+        padding = 5
+        print(f"{Color.GREEN}{'=' * (size + padding)}")
         for k, v in self.options.items():
-            print(f"{Color.GREEN}{k.upper()}: {v}{Color.END}")
-        print("\n")
+            print(f"| {k.upper()}: {v}{' ' * (size-(len(k) + len(v)))}|")
+        print(f"{'=' * (size + padding)}{Color.END} \n")
 
     def get_selection(self):
         selection = input(self.instructions).lower().strip()
@@ -26,7 +29,7 @@ main_menu_options = {
 }
 
 main_menu = Menu("main", main_menu_options,
-                 f"Choose a selection or press {Color.GREEN}{Color.BOLD}'m'{Color.END} for the main menu: ")
+                 f"\nChoose a selection or press {Color.GREEN}{Color.BOLD}'m'{Color.END} for the main menu: ")
 
 inventory_menu = {
     'i': 'Inventory Menu',
@@ -35,7 +38,7 @@ inventory_menu = {
     'm': 'Main menu',
 }
 inventory_menu = Menu("inventory", inventory_menu,
-                      f"Choose from the inventory menu or press {Color.GREEN}{Color.BOLD}'m'{Color.END} to return to the main menu: ")
+                      f"\nChoose from the inventory menu or press {Color.GREEN}{Color.BOLD}'m'{Color.END} to return to the main menu: ")
 item_menu = {
     'p': 'Player inventory',
     'r': 'Room inventory',
@@ -44,4 +47,4 @@ item_menu = {
     'b': 'Previous Menu'
 }
 item_menu = Menu("item", item_menu,
-                 f"GET or DROP an item or press {Color.GREEN}{Color.BOLD}'b'{Color.END} to return to the previous menu: ")
+                 f"\nGET or DROP an item or press {Color.GREEN}{Color.BOLD}'b'{Color.END} to return to the previous menu: ")

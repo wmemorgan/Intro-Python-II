@@ -4,6 +4,7 @@ from player import Player
 from locations import room
 from inventory import Inventory
 from item import Item, Gold, Food
+from design import Color
 
 # Make a new player object that is currently in the 'outside' room.
 player = Player('George', room['outside'], Inventory(
@@ -25,13 +26,12 @@ while selection != 'q':
     selection = main_menu.get_selection()
 
     if selection == 'q':
-        print('Thank you for playing!')
+        print(f"\n{Color.BLUE}{Color.BOLD}THANK YOU FOR PLAYING!{Color.END}")
     elif selection == 'm':
         main_menu.show_menu()
     elif selection == 'd':
         player.current_room.show_available_directions()
     elif selection == 'i':
-        inventory_menu.show_menu()
         inv_selection = ''
 
         while inv_selection != 'm':
@@ -73,7 +73,7 @@ while selection != 'q':
                     
             elif inv_selection == 'r':
                 if (len(player.current_room.inventory.items) > 0):
-                    print(f"{player.current_room.name} contains:")
+                    print(f"{Color.CYAN}{player.current_room.name}{Color.END} contains:")
                 print(player.current_room.inventory.show_inventory())
 
                 item_selection = ''
@@ -89,9 +89,13 @@ while selection != 'q':
                     elif item_selection[:4] == 'drop':
                         player.drop_item(item_selection[4:].strip())
                     elif item_selection == 'p':
-                        inv_selection = 'p'
+                        if (len(player.inventory.items) > 0):
+                            print("You are carrying the following items:")
+                        print(player.inventory.show_inventory())
                     elif item_selection == 'r':
-                        inv_selection = 'r'
+                        if (len(player.current_room.inventory.items) > 0):
+                            print(f"{player.current_room.name} contains:")
+                        print(player.current_room.inventory.show_inventory())
                     else:
                         print("Invalid entry, please try again.")
 
@@ -104,5 +108,5 @@ while selection != 'q':
         player.change_room(selection)
         player.current_room.show_available_directions()
 
-bottom_border = f"\n{'=' * (int(len(player.current_room.description)))}\n"
+bottom_border = f"\n{'=' * (int(len(player.name+player.current_room.name)+padding))}\n"
 print(bottom_border)
