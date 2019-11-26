@@ -1,7 +1,7 @@
 # Implement a class to hold room information. This should have name and
 # description attributes.
 from inventory import Inventory
-
+from design import Color
 
 class Room:
     """Room information and available paths"""
@@ -24,7 +24,7 @@ class Room:
         self.w_to = None
 
     def __str__(self):
-        output = f'{self.name}'
+        output = f"{Color.CYAN}{Color.BOLD}{self.name}{Color.END}"
 
         if len(self.inventory.items) > 0:
             output += f" which contains: \n"
@@ -44,4 +44,4 @@ class Room:
     def show_available_directions(self):
         print(f'Your available paths are:')
         for k, v in self.get_available_directions().items():
-            print(f'{k.upper()}: {getattr(self, v).name}')
+            print(f'{Color.PURPLE}{k.upper()}: {getattr(self, v).name}{Color.END}')

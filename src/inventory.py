@@ -1,5 +1,6 @@
 from item import Item
 from item import Gold
+from design import Color
 
 class Inventory:
     """Inventory management"""
@@ -16,11 +17,12 @@ class Inventory:
             size = max(len(str(word)) for word in self.items)
             padding = 4
             indent = 2
-            output = '\n' + ' ' * (indent) + '*' * (size + padding) + '\n'
+            output = '\n' + Color.YELLOW + ' ' * \
+                (indent) + '*' * (size + padding) + '\n'
             for word in self.items:
                 output += ' ' * (indent) + \
                     '* {a:<{b}} *\n'.format(a=str(word), b=size)
-            output += ' ' * (indent) + '*' * (size + padding) + '\n'
+            output += ' ' * (indent) + '*' * (size + padding) + Color.END + '\n' 
         else:
             output = f'no items available'
 

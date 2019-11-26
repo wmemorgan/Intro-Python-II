@@ -1,3 +1,5 @@
+from design import Color
+
 class Menu:
     """Game menu system"""
 
@@ -8,7 +10,7 @@ class Menu:
 
     def show_menu(self):
         for k, v in self.options.items():
-            print(f"{k.upper()}: {v}")
+            print(f"{Color.GREEN}{k.upper()}: {v}{Color.END}")
         print("\n")
 
     def get_selection(self):
@@ -24,7 +26,7 @@ main_menu_options = {
 }
 
 main_menu = Menu("main", main_menu_options,
-                 "Choose a selection or press 'm' for the main menu: ")
+                 f"Choose a selection or press {Color.GREEN}{Color.BOLD}'m'{Color.END} for the main menu: ")
 
 inventory_menu = {
     'i': 'Inventory Menu',
@@ -33,7 +35,7 @@ inventory_menu = {
     'm': 'Main menu',
 }
 inventory_menu = Menu("inventory", inventory_menu,
-                      "Choose from the inventory menu or press 'm' to return to the main menu: ")
+                      f"Choose from the inventory menu or press {Color.GREEN}{Color.BOLD}'m'{Color.END} to return to the main menu: ")
 item_menu = {
     'p': 'Player inventory',
     'r': 'Room inventory',
@@ -42,4 +44,4 @@ item_menu = {
     'b': 'Previous Menu'
 }
 item_menu = Menu("item", item_menu,
-                 "GET or DROP an item or press 'b' to return to the previous menu: ")
+                 f"GET or DROP an item or press {Color.GREEN}{Color.BOLD}'b'{Color.END} to return to the previous menu: ")
