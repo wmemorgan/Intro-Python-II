@@ -126,6 +126,7 @@ while selection != 'q':
         print(f"\n{Color.RED}Error, please enter valid direction:{Color.END}\n")
     else:
         player.change_room(selection)
+        print(f'{player.current_room.description}\n')
         player.current_room.show_available_directions()
 
 bottom_border = f"\n{'=' * (int(len(player.name+player.current_room.name)+padding))}\n"
