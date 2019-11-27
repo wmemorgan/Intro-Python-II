@@ -14,7 +14,7 @@ class Menu:
         print(f"{Color.GREEN}{'=' * (size + padding)}")
         for k, v in self.options.items():
             print(f"| {k.upper()}: {v}{' ' * (size-(len(k) + len(v)))}|")
-        print(f"{'=' * (size + padding)}{Color.END} \n")
+        print(f"{'=' * (size + padding)}{Color.END}\n")
 
     def get_selection(self):
         selection = input(self.instructions).lower().strip()
