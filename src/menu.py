@@ -29,7 +29,7 @@ main_menu_options = {
 }
 
 main_menu = Menu("main", main_menu_options,
-                 f"\nChoose a selection or press {Color.GREEN}{Color.BOLD}'m'{Color.END} for the main menu: ")
+                 f"\nChoose a selection or press {Color.GREEN}{Color.BOLD}'m'{Color.END} for the menu: ")
 
 inventory_menu = {
     'i': 'Inventory Menu',
@@ -40,11 +40,12 @@ inventory_menu = {
 inventory_menu = Menu("inventory", inventory_menu,
                       f"\nChoose from the inventory menu or press {Color.GREEN}{Color.BOLD}'m'{Color.END} to return to the main menu: ")
 item_menu = {
+    'b': 'Previous Menu',
     'p': 'Player inventory',
     'r': 'Room inventory',
     'get': 'Get [ITEM_NAME]',
     'drop': 'Drop [ITEM_NAME]',
-    'b': 'Previous Menu'
 }
+
 item_menu = Menu("item", item_menu,
                  f"\nGET or DROP an item or press {Color.GREEN}{Color.BOLD}'b'{Color.END} to return to the previous menu: ")

@@ -1,7 +1,7 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
 from inventory import Inventory
-
+from design import Color
 
 class Player:
     """Player characteristics, location, actions"""
@@ -32,9 +32,9 @@ class Player:
                 raise Exception
             else:
                 self.inventory.add_item(found_item)
-                print(f"You picked up {item}")
+                print(f"\nYou picked up {Color.YELLOW}{item}{Color.END}\n")
         except:
-            print(f"ERROR: {item} unavailable")
+            print(f"\n{Color.RED}ERROR: {item} unavailable{Color.END}\n")
 
     def drop_item(self, item):
         try:
@@ -43,6 +43,6 @@ class Player:
                 raise Exception
             else:
                 self.current_room.inventory.add_item(dropped_item)
-                print(f"You dropped {item} in the {self.current_room.name}")
+                print(f"\nYou dropped {Color.YELLOW}{item}{Color.END} in the {Color.CYAN}{self.current_room.name}{Color.END}\n")
         except:
-            print(f"ERROR: You don't have {item}")
+            print(f"\n{Color.RED}ERROR: You don't have {item}{Color.END}\n")

@@ -44,7 +44,7 @@ while selection != 'q':
                 inventory_menu.show_menu()
             elif inv_selection == 'p':
                 if (len(player.inventory.items) > 0):
-                    print("You are carrying the following items:")
+                    print("\nYou are carrying the following items:")
                 print(player.inventory.show_inventory())
 
                 item_selection = ''
@@ -55,25 +55,25 @@ while selection != 'q':
                     item_selection = re.sub(" +", " ", item_selection)
 
                     if item_selection == 'b':
-                        print('Return to previous menu')
+                        print("\nReturn to previous menu\n")
                     elif item_selection[:3] == 'get':
                         player.get_item(item_selection[3:].strip())
                     elif item_selection[:4] == 'drop':
                         player.drop_item(item_selection[4:].strip())
                     elif item_selection == 'p':
                         if (len(player.inventory.items) > 0):
-                            print("You are carrying the following items:")
+                            print("\nYou are carrying the following items:")
                         print(player.inventory.show_inventory())
                     elif item_selection == 'r':
                         if (len(player.current_room.inventory.items) > 0):
                             print(f"{player.current_room.name} contains:")
                         print(player.current_room.inventory.show_inventory())
                     else:
-                        print("Invalid entry, please try again.")
+                        print(f"\n{Color.RED}Invalid entry, please try again.{Color.END}\n")
                     
             elif inv_selection == 'r':
                 if (len(player.current_room.inventory.items) > 0):
-                    print(f"{Color.CYAN}{player.current_room.name}{Color.END} contains:")
+                    print(f"\n{Color.CYAN}{player.current_room.name}{Color.END} contains:")
                 print(player.current_room.inventory.show_inventory())
 
                 item_selection = ''
@@ -83,27 +83,27 @@ while selection != 'q':
                     item_selection = item_menu.get_selection()
                     item_selection = re.sub(" +", " ", item_selection)
                     if item_selection == 'b':
-                        print('Return to previous menu')
+                        print("\nReturn to previous menu\n")
                     elif item_selection[:3] == 'get':
                         player.get_item(item_selection[3:].strip())
                     elif item_selection[:4] == 'drop':
                         player.drop_item(item_selection[4:].strip())
                     elif item_selection == 'p':
                         if (len(player.inventory.items) > 0):
-                            print("You are carrying the following items:")
+                            print("\nYou are carrying the following items:")
                         print(player.inventory.show_inventory())
                     elif item_selection == 'r':
                         if (len(player.current_room.inventory.items) > 0):
-                            print(f"{player.current_room.name} contains:")
+                            print(f"\n{player.current_room.name} contains:")
                         print(player.current_room.inventory.show_inventory())
                     else:
-                        print("Invalid entry, please try again.")
+                        print(f"\n{Color.RED}Invalid entry, please try again.{Color.END}\n")
 
             else:
-                print("Invalid entry, please try again.")
+                print(f"\n{Color.RED}Invalid entry, please try again.{Color.END}\n")
 
     elif selection not in player.current_room.get_available_directions():
-        print('Error, please enter valid direction:\n')
+        print(f"\n{Color.RED}Error, please enter valid direction:{Color.END}\n")
     else:
         player.change_room(selection)
         player.current_room.show_available_directions()
