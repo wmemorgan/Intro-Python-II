@@ -40,6 +40,11 @@ while selection != 'q':
 
             if inv_selection == 'm':
                 main_menu.show_menu()
+            elif inv_selection == 'q':
+                print(
+                    f"\n{Color.BLUE}{Color.BOLD}THANK YOU FOR PLAYING!{Color.END}")
+                selection = 'q'
+                break
             elif inv_selection == 'i':
                 inventory_menu.show_menu()
             elif inv_selection == 'p':
@@ -56,6 +61,13 @@ while selection != 'q':
 
                     if item_selection == 'b':
                         print("\nReturn to previous menu\n")
+                    elif item_selection == 'q':
+                        print(
+                            f"\n{Color.BLUE}{Color.BOLD}THANK YOU FOR PLAYING!{Color.END}")
+                        selection = 'q'
+                        inv_selection = 'm'
+                        item_selection = 'b'
+                        break
                     elif item_selection[:3] == 'get':
                         player.get_item(item_selection[3:].strip())
                     elif item_selection[:4] == 'drop':
@@ -82,8 +94,16 @@ while selection != 'q':
                     item_menu.show_menu()
                     item_selection = item_menu.get_selection()
                     item_selection = re.sub(" +", " ", item_selection)
+
                     if item_selection == 'b':
                         print("\nReturn to previous menu\n")
+                    elif item_selection == 'q':
+                        print(
+                            f"\n{Color.BLUE}{Color.BOLD}THANK YOU FOR PLAYING!{Color.END}")
+                        selection = 'q'
+                        inv_selection = 'm'
+                        item_selection = 'b'
+                        break
                     elif item_selection[:3] == 'get':
                         player.get_item(item_selection[3:].strip())
                     elif item_selection[:4] == 'drop':

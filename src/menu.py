@@ -36,6 +36,7 @@ inventory_menu = {
     'p': 'Player inventory',
     'r': 'Room inventory',
     'm': 'Main menu',
+    'q': 'Quit the game'
 }
 inventory_menu = Menu("inventory", inventory_menu,
                       f"\nChoose from the inventory menu or press {Color.GREEN}{Color.BOLD}'m'{Color.END} to return to the main menu: ")
@@ -45,6 +46,7 @@ item_menu = {
     'r': 'Room inventory',
     'get': 'Get [ITEM_NAME]',
     'drop': 'Drop [ITEM_NAME]',
+    'q': 'Quit the game',
 }
 
 item_menu = Menu("item", item_menu,
